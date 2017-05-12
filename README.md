@@ -25,9 +25,9 @@ use SaleChicken;
 create table mainsale (
 id int primary key auto_increment,
 kind int not null,      //1鸡 2鸡+胗 3鸡+肝 4鸡+胗+肝 5肝 6胗 7肝+胗 
-totalcost double not null,
-receive double not null,
-gchange double not null,
+totalcost decimal(7,2) not null,
+receive decimal(7,2) not null,
+gchange decimal(7,2) not null,
 inserttime datetime not null
 );
 
@@ -35,7 +35,7 @@ inserttime datetime not null
 create table chicken (
 id int primary key auto_increment,
 mid int not null,   //主表的ID，鸡、肝、胗表里都应该有
-price double not null,
+price decimal(7,2) not null,
 inserttime datetime not null,
 foreign key (mid) references mainsale(id)
 );
@@ -44,7 +44,7 @@ foreign key (mid) references mainsale(id)
 create table liver (
 id int primary key auto_increment,
 mid int not null,
-price double not null,
+price decimal(7,2) not null,
 inserttime datetime not null,
 foreign key (mid) references mainsale(id)
 );
@@ -53,9 +53,9 @@ foreign key (mid) references mainsale(id)
 create table gizzard(
 id int primary key auto_increment,
 mid int not null,
-price double,  //程序中默认为10元
+price decimal(7,2),  //程序中默认为10元
 quantity int, 
-totalprice double,//总价钱
+totalprice decimal(7,2),//总价钱
 inserttime datetime,
 foreign key (mid) references mainsale(id)
 );
