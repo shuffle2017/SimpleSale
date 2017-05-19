@@ -28,7 +28,8 @@ kind int not null,      //1鸡 2鸡+胗 3鸡+肝 4鸡+胗+肝 5肝 6胗 7肝+胗
 totalcost decimal(7,2) not null,
 receive decimal(7,2) not null,
 gchange decimal(7,2) not null,
-inserttime datetime not null
+inserttime datetime not null,
+epay int default 0
 );
 
 鸡表，存储每只鸡的价钱，mid为主表的id
@@ -59,3 +60,4 @@ totalprice decimal(7,2),//总价钱
 inserttime datetime,
 foreign key (mid) references mainsale(id)
 );
+需要添加一个电子支付的标志
