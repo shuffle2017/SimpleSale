@@ -19,28 +19,41 @@ A very very little beginner's project,just in order to learn how to use swing.
 
 create database SaleChicken;
 use SaleChicken;
-
-销售主表（下简称主表），用来存储每单交易的总金额、收、找情况，其中id被另三张表外键引用
 create table mainsale (
-id int primary key auto_increment,
-kind int not null,      //1鸡 2鸡+胗 3鸡+肝 4鸡+胗+肝 5肝 6胗 7肝+胗 
-totalcost decimal(7,2) not null,
-receive decimal(7,2) not null,
+
+id int primary key auto_increment, 
+
+receipt decimal(7,2) not null,
+
+income decimal(7,2) not null,
+
 gchange decimal(7,2) not null,
+
 inserttime datetime not null,
+
 epay int default 0
-);
+);    //0现金 1欠款  2支付宝  3微信
+
+
 
 明细表，存储订单下每件商品的具体信息，mid为主表的id
-create table chicken (
+
+
+create table detail(
+
 id int primary key auto_increment,
-mid int not null,   //主表的ID，鸡、肝、胗表里都应该有
+
+mid int not null,   //主表的ID，外键引用主表
 type int not null,  //1鸡 2胗 3肝
+
 quantity int, 
+
 price decimal(7,2) not null,
+
 inserttime datetime not null,
+
 foreign key (mid) references mainsale(id)
 );
 
-需要添加一个电子支付的标志
+
 
